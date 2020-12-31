@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-6" *ngFor="let item of pricing; let i = index">
+        <div class="card mb-3" (click)="onItemSelect(item.id,i)" [ngClass]="{'selected': selectedIndex == i}" [style.outline-color]="item.bg">
+            <div class="price-item" [style.background]="item.bg">
+                <h2>{{item.name}}</h2>
+                <p class="coast">EGP{{item.price}}</p>
+            </div>
+            <div class="card-body p-0 d-none d-lg-block">
+                <ul class="specification list-unstyled">
+
+                    <li *ngFor="let spec of item.specs" class="p-2" [class.bg-light]="spec.id % 2 === 0">{{spec.title}} <span class="badge bg-info text-dark" *ngIf="spec.extra">{{spec.extra}}</span></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row position-relative">
+    <div class="mask position-absolute" *ngIf="mask">
+        <p>Avilable with Special Bakage only click on it first</p>
+    </div>
+    <div class="col-md-12">
+        <h2>Extra Service</h2>
+    </div>
+    <div class="col-md-4 col-4" *ngFor="let item of extraService">
+        <div class="card" (click)="item.selected = !item.selected" [class.selected]="item.selected == true">
+            <div class="price-item" [style.background]="item.bg">
+                <h2>{{item.name}}</h2>
+                <p class="coast">EGP{{item.price}}</p>
+            </div>
+
+        </div>
+    </div>
+</div>
